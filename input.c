@@ -1,21 +1,18 @@
 #include<stdio.h>
 #include<wiringPi.h>
 
-#define GPIO20 20
 
 int main()
 {
 
-	if(wiringPiSetupGpio() == -1) return 0;
+	if(wiringPiSetupGpio() == -1)return 0;
 
-	pinMode(GPIO20, INPUT);
+	pinMode(20, INPUT);
 	printf("Input GPIO20\n");
-	while(1)
-	{
 	
-	if(1 == digitalRead(GPIO20))break;
+	if(1 == digitalRead(20))printf("ON\n");
 	
-	}
+	
 	return 0;
 
 }
