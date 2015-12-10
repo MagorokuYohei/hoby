@@ -6,7 +6,7 @@
 int main()
 {
 
-	if(wiringPiSetupGPIO() == -1) return 0;
+	if(wiringPiSetupGpio() == -1) return 0;
 
 	pinMode(GPIO20, INPUT);
 	printf("Input GPIO20\n");
