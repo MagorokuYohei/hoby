@@ -6,18 +6,15 @@
 int main()
 {
 
-	if(wiringPiSetupGPIO() == -1) return0;
+	if(wiringPiSetupGPIO() == -1) return 0;
 
-	pinMode(GPIO20, 20);
+	pinMode(GPIO20, INPUT);
 	printf("Input GPIO20\n");
 	while(1)
 	{
 	
-	if(1 == digitalRead(GPIO20)
-		{
-			break;
-		}
-
+	if(1 == digitalRead(GPIO20))break;
+	
 	}
 	return 0;
 
