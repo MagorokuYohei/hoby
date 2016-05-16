@@ -33,7 +33,6 @@ class magorock(QtGui.QWidget):
         self.show()
 
 def main():
-    print "BAKEMONO"
     app = QtGui.QApplication(sys.argv)
     mag = magorock()
     sys.exit(app.exec_())
