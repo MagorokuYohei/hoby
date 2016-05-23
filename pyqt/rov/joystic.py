@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 import pygame
 from pygame.locals import *
+from PyQt4 import QtCore,QtGui
+import sys
 
 pygame.joystick.init()
 try:
@@ -11,7 +13,36 @@ try:
 except pygame.error:
     print 'Please connect Joystick'
 
+class magorock(QtGui.QWidget):
+
+    def text_change(self, change):
+        self.value = change
+
+    def __init__(self):
+        super(magorock,self).__init__()
+        self.initUI()
+
+    def update(self):
+        super(magorock,self).update()
+        self.show()
+
+    def initUI(self):
+        value = QtGui.QLabel('HELLO')
+#        value = QtGui.QLabel(text)
+        hbox = QtGui.QHBoxLayout()
+        hbox.addStretch(1)
+        hbox.addWidget(value)
+
+        self.setLayout(hbox)
+        self.setGeometry(300,300,300,300)
+        self.setWindowTitle('Qtgui Qsplitter')
+        self.show()
+
 def main():
+
+    app = QtGui.QApplication(sys.argv)
+    mag = magorock()
+#    sys.exit(app.exec_())
     pygame.init()
     while 1:
         for e in pygame.event.get():
@@ -31,6 +62,7 @@ def main():
                 print str(e.value)
             elif e.type == pygame.locals.JOYBUTTONDOWN:
                 print str(e.button)+' Button Pushed'
+                mag.value = "nek
             elif e.type == pygame.locals.JOYBUTTONUP:
                 print str(e.button)+' Button Released'
 

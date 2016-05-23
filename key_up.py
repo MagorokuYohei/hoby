@@ -30,19 +30,19 @@ class magorock(QtGui.QWidget):
 
   def keyPressEvent(self,e):
     if e.key() == QtCore.Qt.Key_B:
-      self.num_x += 1
-      self.num_y += 1
+      self.num_x += 10
+      self.num_y += 10
     if e.key() == QtCore.Qt.Key_S:
-      self.num_x -= 1
-      self.num_y -= 1
+      self.num_x -= 10
+      self.num_y -= 10
     if e.key() == QtCore.Qt.Key_Up:
-      self.pos_y -= 1
+      self.pos_y -= 10
     if e.key() == QtCore.Qt.Key_Down:
-      self.pos_y += 1
+      self.pos_y += 10
     if e.key() == QtCore.Qt.Key_Right:
-      self.pos_x += 1
+      self.pos_x += 10
     if e.key() == QtCore.Qt.Key_Left:
-      self.pos_x -= 1
+      self.pos_x -= 10
     self.update()
 
 
