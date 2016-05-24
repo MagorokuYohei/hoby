@@ -19,26 +19,27 @@ def main():
     except pygame.error:
         print 'Please connect Joystick'
     b_, u_, y_ = 0,0,0
+    judge = True
     pygame.init()
-    while 1:
+    while judge:
         for e in pygame.event.get():
-            if e.type == QUIT:
-                return
-            if (e.type == KEYDOWN and
-                e.key  == K_ESCAPE):
-                return
+            if e.type == pygame.locals.JOYBUTTONDOWN:
+                print str(e.button)+' Button Pushed'
+                print "break"
+                judge = False
+
+
         time.sleep(0.1)
 
 #        for e in pygame.event.get():
         g, b ,u,y= j.get_axis(0), j.get_axis(1),j.get_axis(2),j.get_axis(3)
-        b = int(b*(-32767))
-        u = int(u*(-32767))
-        y = int(y*(32768))
+        b = int(b*(10))
+        u = int(u*(10))
+        y = int(y*(10))
 
+        """
         if b<1000 and b>-1000:
             b = 0
-
-
         if (b-b_) > 500 :
             if b_ > 32000:
                 b = 32500
@@ -53,7 +54,7 @@ def main():
         if (b>0 and b_<0) or (b<0 and b_>0):
             b = 0
             time.sleep(0.4)
-
+        """
 
 
         if (u-u_) > 500:
@@ -71,8 +72,8 @@ def main():
         print 'Go or Back :'+str(b)
 #        print 'UP or DOWN :'+str(u)
 #        print 'Yaw :' + str(y)
-        message = "S-"+str(b)#+"H-" + str(u)+"Y-"+str(y)
-        sock.sendto(message, (host, port))
+#        message = "S-"+str(b)#+"H-" + str(u)+"Y-"+str(y)
+#        sock.sendto(message, (host, port))
 
         b_ = b
         u_ = u
