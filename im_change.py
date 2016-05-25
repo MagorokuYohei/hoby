@@ -26,7 +26,7 @@ def main():
     for i in mfile:
         print i
 #        os.rename(i, '%s-%s%s' % (head,ct,trans))
-        img = cv2.imread(i, 1) # 画像をグレースケールに変換して読み込む
+        img = cv2.imread(i, 1)#RGB読み込み
         cv2.imwrite('.\cafe\R\%s-%s%s' % (head,ct,trans), img)
         ct+=1
 
