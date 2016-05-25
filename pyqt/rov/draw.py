@@ -43,7 +43,7 @@ class magorock(QtGui.QWidget):
         qp.drawLine(20, 40, 250, 40)
 
         color = QtGui.QColor(255,255,255)
-#        color.setNamedColor('#d4d4d4')
+        color.setNamedColor('#d4d4d4')
         qp.setPen(color)
         qp.setBrush(QtGui.QColor(200, 0, 0))
         qp.drawRect(10, 15, 90, 60)
