@@ -29,7 +29,7 @@ class mago_joy(threading.Thread):
         _j2 = 0
         _j3 = 0
 
-        host = '127.0.0.1'
+        host = '192.168.160.1'
         port = 4000
         sock = socket.socket(socket.AF_INET,socket.SOCK_DGRAM)
 
@@ -65,9 +65,9 @@ class mago_joy(threading.Thread):
                         judge = False
             time.sleep(0.05)
 
-            j1 ,j3, j2= j.get_axis(1),j.get_axis(0),j.get_axis(2)
+            j1 ,j2, j3= j.get_axis(1),j.get_axis(2),j.get_axis(0)
             j1 *=200
-            j2 *=200
+            j2 *=-200
             j3 *=200
 
             if j1 - _j1 > up:
@@ -98,26 +98,26 @@ class mago_joy(threading.Thread):
                 j3 =0
 
             b = j1
-            u = -j2
+            u = j2
             y = j3
 
 
             thr_1 = -j1*32767*0.005 + 32767
-            thr_2 = j2*32767*0.005 + 32767
-            thr_3 = -j3*32767*0.005 + 32767
+            thr_2 = -j2*32767*0.005 + 32767
+            thr_3 = j3*32767*0.005 + 32767
 
             if thr_1 == 32767 and _thr_1 != 32767:
                 message = "S-"+str(int(thr_1))+"H-"+ str(int(thr_2))+"Y-"+str(int(thr_3))
                 sock.sendto(message, (host, port))
-                time.sleep(0.1)
+                time.sleep(0.05)
             if thr_2 == 32767 and _thr_2 != 32767:
                 message = "S-"+str(int(thr_1))+"H-"+ str(int(thr_2))+"Y-"+str(int(thr_3))
                 sock.sendto(message, (host, port))
-                time.sleep(0.1)
+                time.sleep(0.05)
             if thr_3 == 32767 and _thr_3 != 32767:
                 message = "S-"+str(int(thr_1))+"H-"+ str(int(thr_2))+"Y-"+str(int(thr_3))
                 sock.sendto(message, (host, port))
-                time.sleep(0.1)
+                time.sleep(0.05)
 
             message = "S-"+str(int(thr_1))+"H-"+ str(int(thr_2))+"Y-"+str(int(thr_3))
             sock.sendto(message, (host, port))

@@ -109,15 +109,15 @@ class mago_joy(threading.Thread):
             if thr_1 == 32767 and _thr_1 != 32767:
                 message = "S-"+str(int(thr_1))+"H-"+ str(int(thr_2))+"Y-"+str(int(thr_3))
                 sock.sendto(message, (host, port))
-                time.sleep(0.3)
+                time.sleep(0.05)
             if thr_2 == 32767 and _thr_2 != 32767:
                 message = "S-"+str(int(thr_1))+"H-"+ str(int(thr_2))+"Y-"+str(int(thr_3))
                 sock.sendto(message, (host, port))
-                time.sleep(0.3)
+                time.sleep(0.05)
             if thr_3 == 32767 and _thr_3 != 32767:
                 message = "S-"+str(int(thr_1))+"H-"+ str(int(thr_2))+"Y-"+str(int(thr_3))
                 sock.sendto(message, (host, port))
-                time.sleep(0.3)
+                time.sleep(0.05)
 
             message = "S-"+str(int(thr_1))+"H-"+ str(int(thr_2))+"Y-"+str(int(thr_3))
             sock.sendto(message, (host, port))
