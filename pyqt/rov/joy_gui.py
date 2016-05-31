@@ -29,8 +29,8 @@ class mago_joy(threading.Thread):
         _j2 = 0
         _j3 = 0
 
-        host = '127.0.0.1'
-        port = 4000
+        host = '192.168.160.1'
+        port = 12345
         sock = socket.socket(socket.AF_INET,socket.SOCK_DGRAM)
 
 
@@ -57,7 +57,7 @@ class mago_joy(threading.Thread):
             for en in pygame.event.get():
                 if en.type == pygame.locals.JOYBUTTONDOWN:
                     B = []
-                    for i in range(0,8):
+                    for i in range(0,2):
                         B.append(j.get_button(i))
                     if B[0] == 1:# and B[1] == 1 and B[6] == 1 and B[7] == 1:
                         global e
@@ -65,7 +65,7 @@ class mago_joy(threading.Thread):
                         judge = False
             time.sleep(0.05)
 
-            j1 ,j2, j3= j.get_axis(1),j.get_axis(2),j.get_axis(3)
+            j1 ,j2, j3= j.get_axis(1),j.get_axis(2),j.get_axis(0)
             j1 *=200
             j2 *=200
             j3 *=200
@@ -107,19 +107,19 @@ class mago_joy(threading.Thread):
             thr_3 = j3*32767*0.005 + 32767
 
             if thr_1 == 32767 and _thr_1 != 32767:
-                message = "S-"+str(int(thr_1))+"H-"+ str(int(thr_2))+"Y-"+str(int(thr_3))
+                message = str(int(thr_1))+","+ str(int(thr_2))+","+str(int(thr_3))
                 sock.sendto(message, (host, port))
                 time.sleep(0.05)
             if thr_2 == 32767 and _thr_2 != 32767:
-                message = "S-"+str(int(thr_1))+"H-"+ str(int(thr_2))+"Y-"+str(int(thr_3))
+                message = str(int(thr_1))+","+ str(int(thr_2))+","+str(int(thr_3))
                 sock.sendto(message, (host, port))
                 time.sleep(0.05)
             if thr_3 == 32767 and _thr_3 != 32767:
-                message = "S-"+str(int(thr_1))+"H-"+ str(int(thr_2))+"Y-"+str(int(thr_3))
+                message = str(int(thr_1))+","+ str(int(thr_2))+","+str(int(thr_3))
                 sock.sendto(message, (host, port))
                 time.sleep(0.05)
 
-            message = "S-"+str(int(thr_1))+"H-"+ str(int(thr_2))+"Y-"+str(int(thr_3))
+            message = str(int(thr_1))+","+ str(int(thr_2))+","+str(int(thr_3))
             sock.sendto(message, (host, port))
 
             _thr_1 = thr_1
