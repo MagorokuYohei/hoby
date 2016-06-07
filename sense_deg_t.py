@@ -23,15 +23,20 @@ def main():
     angle_l = []
     num = []
     i=0
-    dt = 0.0918174910545
+    dt =0.0919430088997
     angle = 0
 
     mu   = 0
     sigm = 0
     M = []
-    R = 0.001
-    Q = 0.003
+    R = 0.000051
+    Q = 0.0024
 
+    summ = 0
+    summ2= 0
+
+    vv  = 0.
+    vv2 = 0.
 
     for line in open('sense_hat.txt', 'r'):
         a = line.split(',')
@@ -48,6 +53,7 @@ def main():
         a_deg_y = np.degrees(np.arctan2(float(a[4]), np.sqrt(float(a[3])**2 + float(a[5])**2)))
         a_deg_z = np.degrees(np.arctan2(float(a[5]), np.sqrt(float(a[3])**2 + float(a[4])**2)))
 
+
         _mu   = mu + _g_deg_x
         _sigm = sigm  + R
         s     = _sigm + Q
@@ -57,6 +63,13 @@ def main():
         sigm  = (1-K)*_sigm
 
         M.append(mu)
+
+        summ += _g_deg_x
+        summ2+= a_deg_x
+
+        vv  += (_g_deg_x - 0.000792)**2
+        vv2 += (a_deg_x - 5.269212)**2
+
 
 
         angle = (0.98)*(angle + _g_deg_x ) + (0.02)*(a_deg_x);
@@ -81,6 +94,11 @@ def main():
 #    plt.plot(num,a_deg_y_l, 'd-', label='Accel_Y')
     plt.legend()
     plt.show()
+
+    print "Gyro_ave %f"%(summ/10000.)
+    print "Accel_ave %f"%(summ2/10000.)
+    print "Gyro_v %f"%(vv/10000.)
+    print "Accel_v %f"%(vv2/10000.)
 
 
 if __name__=='__main__':
