@@ -4,7 +4,6 @@ from matplotlib import pyplot as plt
 import seaborn
 import random
 
-
 def main():
     g_deg_x =0
     g_deg_y =0
@@ -29,14 +28,15 @@ def main():
     mu   = 0
     sigm = 0
     M = []
-    R = 0.000051
-    Q = 0.0024
+    R = 0.00000051
+    Q = 0.000024
 
     summ = 0
     summ2= 0
 
     vv  = 0.
     vv2 = 0.
+
 
     for line in open('sense_hat.txt', 'r'):
         a = line.split(',')
