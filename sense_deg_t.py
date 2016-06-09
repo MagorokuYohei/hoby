@@ -84,6 +84,8 @@ def main():
         num.append(i)
         i+=1
 
+        print sigm
+
     plt.plot(num,g_deg_x_l, 'r-', label='Gyro_X')
     plt.plot(num,a_deg_x_l, 'b-', label='Accel_X')
     plt.plot(num,angle_l, 'g-', label='Simple_Fiter_X')
